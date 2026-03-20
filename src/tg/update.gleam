@@ -10,11 +10,10 @@ pub type Update {
   IncomingMessage(update_id: Int, message: Message)
   EditedMessage(update_id: Int, message: Message)
   CallbackQuery(update_id: Int, id: String, from: User, data: String)
-  // For future channel support: Let's define a separate ChannelMessage type
+  // For future channel support: Let's maybe define a separate ChannelMessage type
   // since there is no user field
   // ChannelPost(chat: Chat, message: ChannelMessage)
   // EditedChannelPost(chat: Chat, message: ChannelMessage)
-  UnsupportedUpdate(update_id: Int, payload: dynamic.Dynamic)
 }
 
 pub fn update_decoder() -> decode.Decoder(Update) {
@@ -22,7 +21,6 @@ pub fn update_decoder() -> decode.Decoder(Update) {
   decode.one_of(message_update_decoder(update_id), [
     edited_message_update_decoder(update_id),
     callback_query_update_decoder(update_id),
-    fallback_update_decoder(update_id),
   ])
 }
 
@@ -41,11 +39,6 @@ fn callback_query_update_decoder(update_id: Int) {
   use data <- decode.subfield(["callback_query", "data"], decode.string)
   use from <- decode.subfield(["callback_query", "from"], user.user_decoder())
   decode.success(CallbackQuery(update_id:, id:, data:, from:))
-}
-
-fn fallback_update_decoder(update_id: Int) {
-  use payload <- decode.then(decode.dynamic)
-  decode.success(UnsupportedUpdate(update_id:, payload:))
 }
 
 pub type Message {

@@ -7,7 +7,9 @@ import gleam/io
 import gleam/list
 import pprint
 import tg
-import tg/get_updates
+import tg/method/get_updates
+import tg/method/set_message_reaction
+import tg/update
 
 pub fn main() {
   let assert Ok(token) = envoy.get("BOT_TOKEN")
@@ -18,7 +20,6 @@ pub fn main() {
 }
 
 fn poll(credentials: tg.Credentials, offset: Int) {
-  io.println("Hello! I'll poll my updates and print them.")
   io.println("Fetching updates with offset: " <> int.to_string(offset))
   let assert Ok(response) =
     get_updates.request()
@@ -26,18 +27,35 @@ fn poll(credentials: tg.Credentials, offset: Int) {
     |> get_updates.offset(offset)
     |> get_updates.limit(100)
     |> get_updates.build(credentials)
-    |> echo
     |> request.map(bytes_tree.to_bit_array)
     |> httpc.send_bits
 
+  // Print updates
   let assert Ok(updates) = get_updates.response(response)
-
   io.println(pprint.format(updates))
 
+  // React with 👀 to each seen message
+  list.each(updates, fn(update) {
+    case update {
+      update.IncomingMessage(message: message, ..) -> {
+        let assert Ok(_) =
+          set_message_reaction.build_request(
+            chat_id: message.chat.id,
+            message_id: message.message_id,
+            emoji: "👀",
+            credentials: credentials,
+          )
+          |> request.map(bytes_tree.to_bit_array)
+          |> httpc.send_bits
+        Nil
+      }
+      _ -> Nil
+    }
+  })
+
+  // Continue polling
   let last_update =
-    list.sort(updates, fn(update_a, update_b) {
-      int.compare(update_a.update_id, update_b.update_id)
-    })
+    updates
     |> list.reverse
     |> list.first
 
