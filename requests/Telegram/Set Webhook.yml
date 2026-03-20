@@ -1,0 +1,22 @@
+info:
+  name: Set Webhook
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: https://api.telegram.org/bot{{BOT_TOKEN}}/setWebhook
+  body:
+    type: json
+    data: |-
+      {
+        "url": "https://webhook.site/128683c0-5824-494e-882e-c6227cbb273a",
+        "allowed_updates": ["message"]
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

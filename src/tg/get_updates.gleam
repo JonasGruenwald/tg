@@ -14,17 +14,16 @@ import tg/update.{type Update}
 
 /// The update types currently supported by the `update_decoder` in the `update` module.
 pub const supported_updates: List(String) = [
-  "incoming_message",
+  "message",
   "edited_message",
-  "message_reaction",
   "callback_query",
 ]
 
 pub type GetUpdatesRequestBuilder {
   GetUpdatesRequestBuilder(
-    offset: Option(Int),
-    limit: Option(Int),
-    timeout: Option(Int),
+    offset: Int,
+    limit: Int,
+    timeout: Int,
     allowed_updates: List(String),
   )
 }
@@ -35,18 +34,9 @@ fn get_updates_request_builder_to_json(
   let GetUpdatesRequestBuilder(offset:, limit:, timeout:, allowed_updates:) =
     get_updates_request_builder
   json.object([
-    #("offset", case offset {
-      None -> json.null()
-      Some(value) -> json.int(value)
-    }),
-    #("limit", case limit {
-      None -> json.null()
-      Some(value) -> json.int(value)
-    }),
-    #("timeout", case timeout {
-      None -> json.null()
-      Some(value) -> json.int(value)
-    }),
+    #("offset", json.int(offset)),
+    #("limit", json.int(limit)),
+    #("timeout", json.int(timeout)),
     #("allowed_updates", json.array(allowed_updates, json.string)),
   ])
 }
@@ -55,9 +45,9 @@ fn get_updates_request_builder_to_json(
 /// for testing purposes – please set a timeout using `timeout` otherwise.
 pub fn request() -> GetUpdatesRequestBuilder {
   GetUpdatesRequestBuilder(
-    offset: None,
-    limit: None,
-    timeout: None,
+    offset: 0,
+    limit: 100,
+    timeout: 0,
     allowed_updates: supported_updates,
   )
 }
@@ -71,7 +61,7 @@ pub fn offset(
   builder: GetUpdatesRequestBuilder,
   offset: Int,
 ) -> GetUpdatesRequestBuilder {
-  GetUpdatesRequestBuilder(..builder, offset: Some(offset))
+  GetUpdatesRequestBuilder(..builder, offset:)
 }
 
 /// Limits the number of updates to be retrieved. Values between 1-100 are accepted. Defaults to 100.
@@ -79,7 +69,7 @@ pub fn limit(
   builder: GetUpdatesRequestBuilder,
   limit: Int,
 ) -> GetUpdatesRequestBuilder {
-  GetUpdatesRequestBuilder(..builder, limit: Some(limit))
+  GetUpdatesRequestBuilder(..builder, limit:)
 }
 
 /// Timeout in seconds for long polling. Defaults to 0, i.e. usual short polling. 
@@ -88,7 +78,7 @@ pub fn timeout(
   builder: GetUpdatesRequestBuilder,
   timeout: Int,
 ) -> GetUpdatesRequestBuilder {
-  GetUpdatesRequestBuilder(..builder, timeout: Some(timeout))
+  GetUpdatesRequestBuilder(..builder, timeout:)
 }
 
 /// Set the updates you want to receive. By default, this is the `supported_updates` list.
@@ -96,7 +86,7 @@ pub fn allowed_updates(
   builder: GetUpdatesRequestBuilder,
   timeout: Int,
 ) -> GetUpdatesRequestBuilder {
-  GetUpdatesRequestBuilder(..builder, timeout: Some(timeout))
+  GetUpdatesRequestBuilder(..builder, timeout:)
 }
 
 pub fn build(

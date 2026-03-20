@@ -7,90 +7,94 @@ import tg/user.{type User}
 /// An update event from the Telegram API.
 /// https://core.telegram.org/bots/api#update
 pub type Update {
-  IncomingMessage(chat: Chat, message: Message)
-  EditedMessage(chat: Chat, message: Message)
-  MessageReaction(chat: Chat, message_id: Int, user: Option(User), date: Int)
-  CallbackQuery(id: String, from: User, message: Option(Message), data: String)
+  IncomingMessage(update_id: Int, message: Message)
+  EditedMessage(update_id: Int, message: Message)
+  CallbackQuery(update_id: Int, id: String, from: User, data: String)
   // For future channel support: Let's define a separate ChannelMessage type
   // since there is no user field
   // ChannelPost(chat: Chat, message: ChannelMessage)
   // EditedChannelPost(chat: Chat, message: ChannelMessage)
+  UnsupportedUpdate(update_id: Int, payload: dynamic.Dynamic)
 }
 
 pub fn update_decoder() -> decode.Decoder(Update) {
-  use variant <- decode.field("type", decode.string)
-  case variant {
-    "incoming_message" -> {
-      use chat <- decode.field("chat", chat.chat_decoder())
-      use message <- decode.field("message", message_decoder())
-      decode.success(IncomingMessage(chat:, message:))
-    }
-    "edited_message" -> {
-      use chat <- decode.field("chat", chat.chat_decoder())
-      use message <- decode.field("message", message_decoder())
-      decode.success(EditedMessage(chat:, message:))
-    }
-    "message_reaction" -> {
-      use chat <- decode.field("chat", chat.chat_decoder())
-      use message_id <- decode.field("message_id", decode.int)
-      use user <- decode.field("user", decode.optional(user.user_decoder()))
-      use date <- decode.field("date", decode.int)
-      decode.success(MessageReaction(chat:, message_id:, user:, date:))
-    }
-    "callback_query" -> {
-      use id <- decode.field("id", decode.string)
-      use from <- decode.field("from", user.user_decoder())
-      use message <- decode.field("message", decode.optional(message_decoder()))
-      use data <- decode.field("data", decode.string)
-      decode.success(CallbackQuery(id:, from:, message:, data:))
-    }
-    _ ->
-      decode.failure(
-        IncomingMessage(
-          chat.Group(0, None),
-          TextMessage(0, user.User(0, True, "", None, None), ""),
-        ),
-        "Update",
-      )
-  }
+  use update_id <- decode.field("update_id", decode.int)
+  decode.one_of(message_update_decoder(update_id), [
+    edited_message_update_decoder(update_id),
+    callback_query_update_decoder(update_id),
+    fallback_update_decoder(update_id),
+  ])
+}
+
+fn message_update_decoder(update_id: Int) {
+  use message <- decode.field("message", message_decoder())
+  decode.success(IncomingMessage(update_id:, message:))
+}
+
+fn edited_message_update_decoder(update_id: Int) {
+  use message <- decode.field("edited_message", message_decoder())
+  decode.success(EditedMessage(update_id:, message:))
+}
+
+fn callback_query_update_decoder(update_id: Int) {
+  use id <- decode.subfield(["callback_query", "id"], decode.string)
+  use data <- decode.subfield(["callback_query", "data"], decode.string)
+  use from <- decode.subfield(["callback_query", "from"], user.user_decoder())
+  decode.success(CallbackQuery(update_id:, id:, data:, from:))
+}
+
+fn fallback_update_decoder(update_id: Int) {
+  use payload <- decode.then(decode.dynamic)
+  decode.success(UnsupportedUpdate(update_id:, payload:))
 }
 
 pub type Message {
-  TextMessage(message_id: Int, from: User, text: String)
+  TextMessage(message_id: Int, from: User, chat: Chat, text: String)
   PhotoMessage(
     message_id: Int,
     from: User,
+    chat: Chat,
     caption: Option(String),
-    sizes: List(PhotoSize),
+    photo: List(PhotoSize),
   )
   DocumentMessage(
     message_id: Int,
     from: User,
+    chat: Chat,
     caption: Option(String),
     document: Document,
   )
   VideoMessage(
     message_id: Int,
     from: User,
+    chat: Chat,
     caption: Option(String),
     video: Video,
   )
   AudioMessage(
     message_id: Int,
     from: User,
+    chat: Chat,
     caption: Option(String),
     audio: Audio,
   )
-  VideoNoteMessage(message_id: Int, from: User, video_note: VideoNote)
+  VideoNoteMessage(
+    message_id: Int,
+    from: User,
+    chat: Chat,
+    video_note: VideoNote,
+  )
   VoiceMessage(
     message_id: Int,
     from: User,
+    chat: Chat,
     caption: Option(String),
     voice: Voice,
   )
   StickerMessage(
     message_id: Int,
     from: User,
+    chat: Chat,
     file_id: String,
     file_unique_id: String,
   )
@@ -98,55 +102,58 @@ pub type Message {
   /// which this library currently does not support.
   /// This fallback type is provided so that the update decoder does not fail on 
   /// a valid message, which is not supported at this time.
-  UnsupportedMessage(message_id: Int, payload: dynamic.Dynamic)
+  UnsupportedMessage(
+    message_id: Int,
+    from: User,
+    chat: Chat,
+    payload: dynamic.Dynamic,
+  )
 }
 
 fn message_decoder() -> decode.Decoder(Message) {
   use message_id <- decode.field("message_id", decode.int)
-  use from <- decode.optional_field(
-    "from",
-    None,
-    decode.optional(user.user_decoder()),
-  )
+  use chat <- decode.field("chat", chat.chat_decoder())
+  use from <- decode.field("from", user.user_decoder())
 
-  case from {
-    Some(from) -> {
-      decode.one_of(text_message_decoder(message_id, from), [
-        photo_message_decoder(message_id, from),
-        document_message_decoder(message_id, from),
-        video_message_decoder(message_id, from),
-        audio_message_decoder(message_id, from),
-        video_note_message_decoder(message_id, from),
-        voice_message_decoder(message_id, from),
-        sticker_message_decoder(message_id, from),
-        fallback_message_decoder(message_id),
-      ])
-    }
-    None -> {
-      use payload <- decode.then(decode.dynamic)
-      decode.success(UnsupportedMessage(message_id:, payload:))
-    }
-  }
+  decode.one_of(text_message_decoder(message_id, from, chat), [
+    photo_message_decoder(message_id, from, chat),
+    document_message_decoder(message_id, from, chat),
+    video_message_decoder(message_id, from, chat),
+    audio_message_decoder(message_id, from, chat),
+    video_note_message_decoder(message_id, from, chat),
+    voice_message_decoder(message_id, from, chat),
+    sticker_message_decoder(message_id, from, chat),
+    fallback_message_decoder(message_id, from, chat),
+  ])
 }
 
-fn text_message_decoder(message_id: Int, from: User) -> decode.Decoder(Message) {
+fn text_message_decoder(
+  message_id: Int,
+  from: User,
+  chat: Chat,
+) -> decode.Decoder(Message) {
   use text <- decode.field("text", decode.string)
-  decode.success(TextMessage(message_id:, from:, text:))
+  decode.success(TextMessage(message_id:, from:, chat:, text:))
 }
 
-fn photo_message_decoder(message_id: Int, from: User) -> decode.Decoder(Message) {
-  use sizes <- decode.field("sizes", decode.list(photo_size_decoder()))
+fn photo_message_decoder(
+  message_id: Int,
+  from: User,
+  chat: Chat,
+) -> decode.Decoder(Message) {
+  use photo <- decode.field("photo", decode.list(photo_size_decoder()))
   use caption <- decode.optional_field(
     "caption",
     option.None,
     decode.optional(decode.string),
   )
-  decode.success(PhotoMessage(message_id:, from:, caption:, sizes:))
+  decode.success(PhotoMessage(message_id:, from:, chat:, caption:, photo:))
 }
 
 fn document_message_decoder(
   message_id: Int,
   from: User,
+  chat: Chat,
 ) -> decode.Decoder(Message) {
   use document <- decode.field("document", document_decoder())
   use caption <- decode.optional_field(
@@ -154,62 +161,82 @@ fn document_message_decoder(
     option.None,
     decode.optional(decode.string),
   )
-  decode.success(DocumentMessage(message_id:, from:, document:, caption:))
+  decode.success(DocumentMessage(message_id:, from:, chat:, document:, caption:))
 }
 
-fn video_message_decoder(message_id: Int, from: User) -> decode.Decoder(Message) {
+fn video_message_decoder(
+  message_id: Int,
+  from: User,
+  chat: Chat,
+) -> decode.Decoder(Message) {
   use video <- decode.field("video", video_decoder())
   use caption <- decode.optional_field(
     "caption",
     option.None,
     decode.optional(decode.string),
   )
-  decode.success(VideoMessage(message_id:, from:, caption:, video:))
+  decode.success(VideoMessage(message_id:, from:, chat:, caption:, video:))
 }
 
-fn audio_message_decoder(message_id: Int, from: User) -> decode.Decoder(Message) {
+fn audio_message_decoder(
+  message_id: Int,
+  from: User,
+  chat: Chat,
+) -> decode.Decoder(Message) {
   use audio <- decode.field("audio", audio_decoder())
   use caption <- decode.optional_field(
     "caption",
     option.None,
     decode.optional(decode.string),
   )
-  decode.success(AudioMessage(message_id:, from:, caption:, audio:))
+  decode.success(AudioMessage(message_id:, from:, chat:, caption:, audio:))
 }
 
 fn video_note_message_decoder(
   message_id: Int,
   from: User,
+  chat: Chat,
 ) -> decode.Decoder(Message) {
   use video_note <- decode.field("video_note", video_note_decoder())
-  decode.success(VideoNoteMessage(message_id:, from:, video_note:))
+  decode.success(VideoNoteMessage(message_id:, from:, chat:, video_note:))
 }
 
-fn voice_message_decoder(message_id: Int, from: User) -> decode.Decoder(Message) {
+fn voice_message_decoder(
+  message_id: Int,
+  from: User,
+  chat: Chat,
+) -> decode.Decoder(Message) {
   use voice <- decode.field("voice", voice_decoder())
   use caption <- decode.optional_field(
     "caption",
     option.None,
     decode.optional(decode.string),
   )
-  decode.success(VoiceMessage(message_id:, from:, caption:, voice:))
+  decode.success(VoiceMessage(message_id:, from:, chat:, caption:, voice:))
 }
 
 fn sticker_message_decoder(
   message_id: Int,
   from: User,
+  chat: Chat,
 ) -> decode.Decoder(Message) {
   use file_id <- decode.subfield(["sticker", "file_id"], decode.string)
   use file_unique_id <- decode.subfield(
     ["sticker", "file_unique_id"],
     decode.string,
   )
-  decode.success(StickerMessage(message_id:, from:, file_id:, file_unique_id:))
+  decode.success(StickerMessage(
+    message_id:,
+    from:,
+    chat:,
+    file_id:,
+    file_unique_id:,
+  ))
 }
 
-fn fallback_message_decoder(message_id: Int) {
+fn fallback_message_decoder(message_id: Int, from: User, chat: Chat) {
   use payload <- decode.then(decode.dynamic)
-  decode.success(UnsupportedMessage(message_id:, payload:))
+  decode.success(UnsupportedMessage(message_id:, from:, chat:, payload:))
 }
 
 /// A video file

@@ -1,0 +1,7 @@
+[tools]
+erlang = "28"
+gleam = "1.15.2"
+rebar = "3"
+
+[env]
+_.file = '.env'

@@ -1,0 +1,18 @@
+info:
+  name: Delete Webhook
+  type: http
+  seq: 5
+
+http:
+  method: POST
+  url: https://api.telegram.org/bot{{BOT_TOKEN}}/deleteWebhook
+  body:
+    type: json
+    data: ""
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

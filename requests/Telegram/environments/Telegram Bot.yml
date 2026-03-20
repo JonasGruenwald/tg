@@ -1,0 +1,4 @@
+name: Telegram Bot
+variables:
+  - secret: true
+    name: BOT_TOKEN

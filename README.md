@@ -16,7 +16,7 @@ Consider the following alternatives:
 
 - [`telega`](https://hexdocs.pm/telega/) –  Telegram bot framework for Gleam, makes some assumptions about IO and depends on the Erlang target
 - [`telegex`](https://hexdocs.pm/telegex/readme.html) – Telegram bot framework for Elixir
-- Just write the requests you need yourself (the Telegram bot API is very simple)
+- Just write the requests you need yourself (the Telegram bot API is very simple for basic message sending)
 
 ### Installation
 
