@@ -1,0 +1,67 @@
+info:
+  name: Get File
+  type: http
+  seq: 6
+
+http:
+  method: POST
+  url: https://api.telegram.org/bot{{BOT_TOKEN}}/getFile
+  body:
+    type: json
+    data: |-
+      {
+        "file_id": "AgACAgIAAxkBAAMNab01wRJgrKTx-PRcAbbRH1ngsAQAAhcVaxtp-OlJGhCQwa2ewNcBAAMCAANzAAM6BA"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: File Response
+    request:
+      url: https://api.telegram.org/bot{{BOT_TOKEN}}/getFile
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "file_id": "AgACAgIAAxkBAAMNab01wRJgrKTx-PRcAbbRH1ngsAQAAhcVaxtp-OlJGhCQwa2ewNcBAAMCAANzAAM6BA"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: server
+          value: nginx/1.18.0
+        - name: date
+          value: Fri, 20 Mar 2026 16:13:54 GMT
+        - name: content-type
+          value: application/json
+        - name: content-length
+          value: "202"
+        - name: connection
+          value: keep-alive
+        - name: strict-transport-security
+          value: max-age=31536000; includeSubDomains; preload
+        - name: access-control-allow-origin
+          value: "*"
+        - name: access-control-allow-methods
+          value: GET, POST, OPTIONS
+        - name: access-control-expose-headers
+          value: Content-Length,Content-Type,Date,Server,Connection
+      body:
+        type: json
+        data: |-
+          {
+            "ok": true,
+            "result": {
+              "file_id": "AgACAgIAAxkBAAMNab01wRJgrKTx-PRcAbbRH1ngsAQAAhcVaxtp-OlJGhCQwa2ewNcBAAMCAANzAAM6BA",
+              "file_unique_id": "AQADFxVrG2n46Ul4",
+              "file_size": 1739,
+              "file_path": "photos/file_0.jpg"
+            }
+          }

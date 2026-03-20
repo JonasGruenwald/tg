@@ -1,3 +1,4 @@
+import gleam/dynamic
 import gleam/dynamic/decode
 import gleam/http
 import gleam/http/response
@@ -60,6 +61,9 @@ pub fn with_api_server_port(
 pub type TgError {
   InvalidResponse(response: response.Response(BitArray), expected: String)
   FailedToDecodeResponse(error: json.DecodeError)
-  FailedToDecodePayload(errors: List(decode.DecodeError))
+  FailedToDecodePayload(
+    errors: List(decode.DecodeError),
+    payload: dynamic.Dynamic,
+  )
   TelegramError(description: String)
 }

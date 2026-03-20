@@ -1,0 +1,20 @@
+info:
+  name: Download File
+  type: http
+  seq: 7
+
+http:
+  method: GET
+  url: https://api.telegram.org/file/bot{{BOT_TOKEN}}/{{FILE_PATH}}
+  auth: inherit
+
+runtime:
+  variables:
+    - name: FILE_PATH
+      value: photos/file_0.jpg
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

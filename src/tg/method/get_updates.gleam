@@ -3,8 +3,8 @@
 
 import gleam/bytes_tree
 import gleam/dynamic/decode
-import gleam/http/request as http_request
-import gleam/http/response as http_response
+import gleam/http/request
+import gleam/http/response
 import gleam/json
 import gleam/option.{type Option, None, Some}
 import gleam/result
@@ -92,7 +92,7 @@ pub fn allowed_updates(
 pub fn build(
   builder: GetUpdatesRequestBuilder,
   credentials: Credentials,
-) -> http_request.Request(bytes_tree.BytesTree) {
+) -> request.Request(bytes_tree.BytesTree) {
   internal.request(
     credentials,
     "getUpdates",
@@ -101,10 +101,10 @@ pub fn build(
 }
 
 pub fn response(
-  response: http_response.Response(BitArray),
+  response: response.Response(BitArray),
 ) -> Result(List(Update), TgError) {
   use payload <- result.try(internal.extract_payload(response))
 
   decode.run(payload, decode.list(update.update_decoder()))
-  |> result.map_error(fn(errors) { tg.FailedToDecodePayload(errors) })
+  |> result.map_error(fn(errors) { tg.FailedToDecodePayload(errors, payload:) })
 }

@@ -26,7 +26,11 @@ pub fn chat_decoder() -> decode.Decoder(Chat) {
   case variant {
     "private" -> {
       use id <- decode.field("id", decode.int)
-      use username <- decode.field("username", decode.optional(decode.string))
+      use username <- decode.optional_field(
+        "username",
+        option.None,
+        decode.optional(decode.string),
+      )
       use first_name <- decode.field(
         "first_name",
         decode.optional(decode.string),
@@ -42,14 +46,22 @@ pub fn chat_decoder() -> decode.Decoder(Chat) {
     "supergroup" -> {
       use id <- decode.field("id", decode.int)
       use title <- decode.field("title", decode.optional(decode.string))
-      use username <- decode.field("username", decode.optional(decode.string))
-      use is_forum <- decode.field("is_forum", decode.bool)
+      use username <- decode.optional_field(
+        "username",
+        option.None,
+        decode.optional(decode.string),
+      )
+      use is_forum <- decode.optional_field("is_forum", False, decode.bool)
       decode.success(Supergroup(id:, title:, username:, is_forum:))
     }
     "channel" -> {
       use id <- decode.field("id", decode.int)
       use title <- decode.field("title", decode.optional(decode.string))
-      use username <- decode.field("username", decode.optional(decode.string))
+      use username <- decode.optional_field(
+        "username",
+        option.None,
+        decode.optional(decode.string),
+      )
       decode.success(Channel(id:, title:, username:))
     }
     _ -> decode.failure(Group(0, option.None), "Chat")
