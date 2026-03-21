@@ -3,7 +3,9 @@ import gleam/dynamic/decode
 import gleam/http
 import gleam/http/response
 import gleam/json
+import gleam/list
 import gleam/option.{type Option, None, Some}
+import gleam/string
 
 // ------------------------------ CONFIGURATION -----------------------------------------
 
@@ -66,4 +68,36 @@ pub type TgError {
     payload: dynamic.Dynamic,
   )
   TelegramError(description: String)
+}
+
+pub fn describe_error(error: TgError) -> String {
+  case error {
+    InvalidResponse(response: _, expected:) ->
+      "Invalid response, expected: " <> expected
+    FailedToDecodeResponse(error:) -> describe_json_decode_error(error)
+    FailedToDecodePayload(errors:, payload: _) ->
+      "Failed to decode payload, errors: " <> describe_decode_errors(errors)
+    TelegramError(description:) -> "Teelgram Error: " <> description
+  }
+}
+
+fn describe_decode_errors(errors: List(decode.DecodeError)) -> String {
+  list.map(errors, fn(issue) {
+    issue.path |> string.join("->")
+    <> " expected: "
+    <> issue.expected
+    <> " found: "
+    <> issue.found
+  })
+  |> string.join(", ")
+}
+
+fn describe_json_decode_error(error: json.DecodeError) {
+  case error {
+    json.UnexpectedEndOfInput -> "Unexpected end of input"
+    json.UnexpectedByte(byte) -> "Unexpected byte: " <> byte
+    json.UnexpectedSequence(sequence) -> "Unexptected sequence: " <> sequence
+    json.UnableToDecode(errors) ->
+      "Unable to decode, issues: " <> describe_decode_errors(errors)
+  }
 }
