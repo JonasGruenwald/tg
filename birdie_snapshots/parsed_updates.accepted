@@ -1,0 +1,293 @@
+---
+version: 1.5.4
+title: Parsed Updates
+file: ./test/tg_test.gleam
+test_name: get_updates_response_test
+---
+[
+  IncomingMessage(
+    517724369,
+    UnsupportedMessage(
+      1,
+      1773968493,
+      User(
+        968749252,
+        False,
+        "Jonas",
+        None,
+        None,
+      ),
+      Group(
+        -4749096338,
+        Some("Bot Test Group"),
+      ),
+      dict.from_list([
+        #(
+          "chat",
+          dict.from_list([
+            #(
+              "accepted_gift_types",
+              dict.from_list([
+                #(
+                  "gifts_from_channels",
+                  False,
+                ),
+                #(
+                  "limited_gifts",
+                  False,
+                ),
+                #(
+                  "premium_subscription",
+                  False,
+                ),
+                #("unique_gifts", False),
+                #(
+                  "unlimited_gifts",
+                  False,
+                ),
+              ]),
+            ),
+            #(
+              "all_members_are_administrators",
+              False,
+            ),
+            #("id", -4749096338),
+            #("title", "Bot Test Group"),
+            #("type", "group"),
+          ]),
+        ),
+        #("date", 1773968493),
+        #(
+          "from",
+          dict.from_list([
+            #("first_name", "Jonas"),
+            #("id", 968749252),
+            #("is_bot", False),
+          ]),
+        ),
+        #("message_id", 1),
+        #(
+          "new_chat_member",
+          dict.from_list([
+            #("first_name", "Watcher"),
+            #("id", 8747295349),
+            #("is_bot", True),
+            #(
+              "username",
+              "watcher_76_bot",
+            ),
+          ]),
+        ),
+        #(
+          "new_chat_members",
+          [
+            dict.from_list([
+              #("first_name", "Watcher"),
+              #("id", 8747295349),
+              #("is_bot", True),
+              #(
+                "username",
+                "watcher_76_bot",
+              ),
+            ]),
+          ],
+        ),
+        #(
+          "new_chat_participant",
+          dict.from_list([
+            #("first_name", "Watcher"),
+            #("id", 8747295349),
+            #("is_bot", True),
+            #(
+              "username",
+              "watcher_76_bot",
+            ),
+          ]),
+        ),
+      ]),
+    ),
+  ),
+  IncomingMessage(
+    517724370,
+    TextMessage(
+      2,
+      1773968514,
+      User(
+        968749252,
+        False,
+        "Jonas",
+        None,
+        None,
+      ),
+      Group(
+        -4749096338,
+        Some("Bot Test Group"),
+      ),
+      "Hey @watcher_76_bot",
+    ),
+  ),
+  IncomingMessage(
+    517724371,
+    UnsupportedMessage(
+      3,
+      1773968547,
+      User(
+        968749252,
+        False,
+        "Jonas",
+        None,
+        None,
+      ),
+      Group(
+        -4749096338,
+        Some("Bot Test Group"),
+      ),
+      dict.from_list([
+        #(
+          "chat",
+          dict.from_list([
+            #(
+              "accepted_gift_types",
+              dict.from_list([
+                #(
+                  "gifts_from_channels",
+                  False,
+                ),
+                #(
+                  "limited_gifts",
+                  False,
+                ),
+                #(
+                  "premium_subscription",
+                  False,
+                ),
+                #("unique_gifts", False),
+                #(
+                  "unlimited_gifts",
+                  False,
+                ),
+              ]),
+            ),
+            #(
+              "all_members_are_administrators",
+              False,
+            ),
+            #("id", -4749096338),
+            #("title", "Bot Test Group"),
+            #("type", "group"),
+          ]),
+        ),
+        #("date", 1773968547),
+        #(
+          "from",
+          dict.from_list([
+            #("first_name", "Jonas"),
+            #("id", 968749252),
+            #("is_bot", False),
+          ]),
+        ),
+        #(
+          "left_chat_member",
+          dict.from_list([
+            #("first_name", "Jonas"),
+            #("id", 968749252),
+            #("is_bot", False),
+          ]),
+        ),
+        #(
+          "left_chat_participant",
+          dict.from_list([
+            #("first_name", "Jonas"),
+            #("id", 968749252),
+            #("is_bot", False),
+          ]),
+        ),
+        #("message_id", 3),
+      ]),
+    ),
+  ),
+  IncomingMessage(
+    517724373,
+    UnsupportedMessage(
+      4,
+      1773968575,
+      User(
+        968749252,
+        False,
+        "Jonas",
+        None,
+        None,
+      ),
+      Group(
+        -5279077556,
+        Some("Bot test group"),
+      ),
+      dict.from_list([
+        #(
+          "chat",
+          dict.from_list([
+            #(
+              "accepted_gift_types",
+              dict.from_list([
+                #(
+                  "gifts_from_channels",
+                  False,
+                ),
+                #(
+                  "limited_gifts",
+                  False,
+                ),
+                #(
+                  "premium_subscription",
+                  False,
+                ),
+                #("unique_gifts", False),
+                #(
+                  "unlimited_gifts",
+                  False,
+                ),
+              ]),
+            ),
+            #(
+              "all_members_are_administrators",
+              False,
+            ),
+            #("id", -5279077556),
+            #("title", "Bot test group"),
+            #("type", "group"),
+          ]),
+        ),
+        #("date", 1773968575),
+        #(
+          "from",
+          dict.from_list([
+            #("first_name", "Jonas"),
+            #("id", 968749252),
+            #("is_bot", False),
+          ]),
+        ),
+        #("group_chat_created", True),
+        #("message_id", 4),
+      ]),
+    ),
+  ),
+  IncomingMessage(
+    517724374,
+    TextMessage(
+      5,
+      1773968580,
+      User(
+        968749252,
+        False,
+        "Jonas",
+        None,
+        None,
+      ),
+      Group(
+        -5279077556,
+        Some("Bot test group"),
+      ),
+      "hey @watcher_76_bot",
+    ),
+  ),
+]

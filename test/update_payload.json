@@ -2,48 +2,6 @@
   "ok": true,
   "result": [
     {
-      "update_id": 517724368,
-      "my_chat_member": {
-        "chat": {
-          "id": -4749096338,
-          "title": "Bot Test Group",
-          "type": "group",
-          "all_members_are_administrators": false,
-          "accepted_gift_types": {
-            "unlimited_gifts": false,
-            "limited_gifts": false,
-            "unique_gifts": false,
-            "premium_subscription": false,
-            "gifts_from_channels": false
-          }
-        },
-        "from": {
-          "id": 968749252,
-          "is_bot": false,
-          "first_name": "Jonas"
-        },
-        "date": 1773968493,
-        "old_chat_member": {
-          "user": {
-            "id": 8747295349,
-            "is_bot": true,
-            "first_name": "Watcher",
-            "username": "watcher_76_bot"
-          },
-          "status": "left"
-        },
-        "new_chat_member": {
-          "user": {
-            "id": 8747295349,
-            "is_bot": true,
-            "first_name": "Watcher",
-            "username": "watcher_76_bot"
-          },
-          "status": "member"
-        }
-      }
-    },
-    {
       "update_id": 517724369,
       "message": {
         "message_id": 1,
@@ -153,48 +111,6 @@
           "id": 968749252,
           "is_bot": false,
           "first_name": "Jonas"
-        }
-      }
-    },
-    {
-      "update_id": 517724372,
-      "my_chat_member": {
-        "chat": {
-          "id": -5279077556,
-          "title": "Bot test group",
-          "type": "group",
-          "all_members_are_administrators": false,
-          "accepted_gift_types": {
-            "unlimited_gifts": false,
-            "limited_gifts": false,
-            "unique_gifts": false,
-            "premium_subscription": false,
-            "gifts_from_channels": false
-          }
-        },
-        "from": {
-          "id": 968749252,
-          "is_bot": false,
-          "first_name": "Jonas"
-        },
-        "date": 1773968575,
-        "old_chat_member": {
-          "user": {
-            "id": 8747295349,
-            "is_bot": true,
-            "first_name": "Watcher",
-            "username": "watcher_76_bot"
-          },
-          "status": "left"
-        },
-        "new_chat_member": {
-          "user": {
-            "id": 8747295349,
-            "is_bot": true,
-            "first_name": "Watcher",
-            "username": "watcher_76_bot"
-          },
-          "status": "member"
         }
       }
     },

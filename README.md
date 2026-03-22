@@ -3,6 +3,9 @@
 [![Package Version](https://img.shields.io/hexpm/v/tg)](https://hex.pm/packages/tg)
 [![Hex Docs](https://img.shields.io/badge/hex-docs-ffaff3)](https://hexdocs.pm/tg/)
 
+> [!CAUTION]
+> This package isn't finished yet! I'm making it public so that I can use it as a git dependency in my project
+
 A small sans-io Gleam library for the Telegram Bot API.
 
 ### Overview
@@ -32,10 +35,3 @@ gleam add tg@1
 ```
 
 Further documentation can be found at <https://hexdocs.pm/tg>.
-
-## Development
-
-```sh
-gleam run   # Run the project
-gleam test  # Run the tests
-```

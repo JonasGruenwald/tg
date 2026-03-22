@@ -42,9 +42,10 @@ fn callback_query_update_decoder(update_id: Int) {
 }
 
 pub type Message {
-  TextMessage(message_id: Int, from: User, chat: Chat, text: String)
+  TextMessage(message_id: Int, date: Int, from: User, chat: Chat, text: String)
   PhotoMessage(
     message_id: Int,
+    date: Int,
     from: User,
     chat: Chat,
     caption: Option(String),
@@ -52,6 +53,7 @@ pub type Message {
   )
   DocumentMessage(
     message_id: Int,
+    date: Int,
     from: User,
     chat: Chat,
     caption: Option(String),
@@ -59,6 +61,7 @@ pub type Message {
   )
   VideoMessage(
     message_id: Int,
+    date: Int,
     from: User,
     chat: Chat,
     caption: Option(String),
@@ -66,6 +69,7 @@ pub type Message {
   )
   AudioMessage(
     message_id: Int,
+    date: Int,
     from: User,
     chat: Chat,
     caption: Option(String),
@@ -73,12 +77,14 @@ pub type Message {
   )
   VideoNoteMessage(
     message_id: Int,
+    date: Int,
     from: User,
     chat: Chat,
     video_note: VideoNote,
   )
   VoiceMessage(
     message_id: Int,
+    date: Int,
     from: User,
     chat: Chat,
     caption: Option(String),
@@ -86,6 +92,7 @@ pub type Message {
   )
   StickerMessage(
     message_id: Int,
+    date: Int,
     from: User,
     chat: Chat,
     file_id: String,
@@ -97,6 +104,7 @@ pub type Message {
   /// a valid message, which is not supported at this time.
   UnsupportedMessage(
     message_id: Int,
+    date: Int,
     from: User,
     chat: Chat,
     payload: dynamic.Dynamic,
@@ -107,30 +115,33 @@ fn message_decoder() -> decode.Decoder(Message) {
   use message_id <- decode.field("message_id", decode.int)
   use chat <- decode.field("chat", chat.chat_decoder())
   use from <- decode.field("from", user.user_decoder())
+  use date <- decode.field("date", decode.int)
 
-  decode.one_of(text_message_decoder(message_id, from, chat), [
-    photo_message_decoder(message_id, from, chat),
-    document_message_decoder(message_id, from, chat),
-    video_message_decoder(message_id, from, chat),
-    audio_message_decoder(message_id, from, chat),
-    video_note_message_decoder(message_id, from, chat),
-    voice_message_decoder(message_id, from, chat),
-    sticker_message_decoder(message_id, from, chat),
-    fallback_message_decoder(message_id, from, chat),
+  decode.one_of(text_message_decoder(message_id, date, from, chat), [
+    photo_message_decoder(message_id, date, from, chat),
+    document_message_decoder(message_id, date, from, chat),
+    video_message_decoder(message_id, date, from, chat),
+    audio_message_decoder(message_id, date, from, chat),
+    video_note_message_decoder(message_id, date, from, chat),
+    voice_message_decoder(message_id, date, from, chat),
+    sticker_message_decoder(message_id, date, from, chat),
+    fallback_message_decoder(message_id, date, from, chat),
   ])
 }
 
 fn text_message_decoder(
   message_id: Int,
+  date: Int,
   from: User,
   chat: Chat,
 ) -> decode.Decoder(Message) {
   use text <- decode.field("text", decode.string)
-  decode.success(TextMessage(message_id:, from:, chat:, text:))
+  decode.success(TextMessage(message_id:, date:, from:, chat:, text:))
 }
 
 fn photo_message_decoder(
   message_id: Int,
+  date: Int,
   from: User,
   chat: Chat,
 ) -> decode.Decoder(Message) {
@@ -140,11 +151,19 @@ fn photo_message_decoder(
     option.None,
     decode.optional(decode.string),
   )
-  decode.success(PhotoMessage(message_id:, from:, chat:, caption:, photo:))
+  decode.success(PhotoMessage(
+    message_id:,
+    date:,
+    from:,
+    chat:,
+    caption:,
+    photo:,
+  ))
 }
 
 fn document_message_decoder(
   message_id: Int,
+  date: Int,
   from: User,
   chat: Chat,
 ) -> decode.Decoder(Message) {
@@ -154,11 +173,19 @@ fn document_message_decoder(
     option.None,
     decode.optional(decode.string),
   )
-  decode.success(DocumentMessage(message_id:, from:, chat:, document:, caption:))
+  decode.success(DocumentMessage(
+    message_id:,
+    date:,
+    from:,
+    chat:,
+    document:,
+    caption:,
+  ))
 }
 
 fn video_message_decoder(
   message_id: Int,
+  date: Int,
   from: User,
   chat: Chat,
 ) -> decode.Decoder(Message) {
@@ -168,11 +195,19 @@ fn video_message_decoder(
     option.None,
     decode.optional(decode.string),
   )
-  decode.success(VideoMessage(message_id:, from:, chat:, caption:, video:))
+  decode.success(VideoMessage(
+    message_id:,
+    date:,
+    from:,
+    chat:,
+    caption:,
+    video:,
+  ))
 }
 
 fn audio_message_decoder(
   message_id: Int,
+  date: Int,
   from: User,
   chat: Chat,
 ) -> decode.Decoder(Message) {
@@ -182,20 +217,29 @@ fn audio_message_decoder(
     option.None,
     decode.optional(decode.string),
   )
-  decode.success(AudioMessage(message_id:, from:, chat:, caption:, audio:))
+  decode.success(AudioMessage(
+    message_id:,
+    date:,
+    from:,
+    chat:,
+    caption:,
+    audio:,
+  ))
 }
 
 fn video_note_message_decoder(
   message_id: Int,
+  date: Int,
   from: User,
   chat: Chat,
 ) -> decode.Decoder(Message) {
   use video_note <- decode.field("video_note", video_note_decoder())
-  decode.success(VideoNoteMessage(message_id:, from:, chat:, video_note:))
+  decode.success(VideoNoteMessage(message_id:, date:, from:, chat:, video_note:))
 }
 
 fn voice_message_decoder(
   message_id: Int,
+  date: Int,
   from: User,
   chat: Chat,
 ) -> decode.Decoder(Message) {
@@ -205,11 +249,19 @@ fn voice_message_decoder(
     option.None,
     decode.optional(decode.string),
   )
-  decode.success(VoiceMessage(message_id:, from:, chat:, caption:, voice:))
+  decode.success(VoiceMessage(
+    message_id:,
+    date:,
+    from:,
+    chat:,
+    caption:,
+    voice:,
+  ))
 }
 
 fn sticker_message_decoder(
   message_id: Int,
+  date: Int,
   from: User,
   chat: Chat,
 ) -> decode.Decoder(Message) {
@@ -220,6 +272,7 @@ fn sticker_message_decoder(
   )
   decode.success(StickerMessage(
     message_id:,
+    date:,
     from:,
     chat:,
     file_id:,
@@ -227,9 +280,9 @@ fn sticker_message_decoder(
   ))
 }
 
-fn fallback_message_decoder(message_id: Int, from: User, chat: Chat) {
+fn fallback_message_decoder(message_id: Int, date: Int, from: User, chat: Chat) {
   use payload <- decode.then(decode.dynamic)
-  decode.success(UnsupportedMessage(message_id:, from:, chat:, payload:))
+  decode.success(UnsupportedMessage(message_id:, date:, from:, chat:, payload:))
 }
 
 /// A video file

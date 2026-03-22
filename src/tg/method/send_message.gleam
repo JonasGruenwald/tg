@@ -1,4 +1,4 @@
-//// TODO: this is a stub
+//// TODO: this is a stub – THIS MODULE IS UNFINISHED
 
 import gleam/option.{type Option}
 
