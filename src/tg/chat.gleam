@@ -31,21 +31,34 @@ pub fn chat_decoder() -> decode.Decoder(Chat) {
         option.None,
         decode.optional(decode.string),
       )
-      use first_name <- decode.field(
+      use first_name <- decode.optional_field(
         "first_name",
+        option.None,
         decode.optional(decode.string),
       )
-      use last_name <- decode.field("last_name", decode.optional(decode.string))
+      use last_name <- decode.optional_field(
+        "last_name",
+        option.None,
+        decode.optional(decode.string),
+      )
       decode.success(Private(id:, username:, first_name:, last_name:))
     }
     "group" -> {
       use id <- decode.field("id", decode.int)
-      use title <- decode.field("title", decode.optional(decode.string))
+      use title <- decode.optional_field(
+        "title",
+        option.None,
+        decode.optional(decode.string),
+      )
       decode.success(Group(id:, title:))
     }
     "supergroup" -> {
       use id <- decode.field("id", decode.int)
-      use title <- decode.field("title", decode.optional(decode.string))
+      use title <- decode.optional_field(
+        "title",
+        option.None,
+        decode.optional(decode.string),
+      )
       use username <- decode.optional_field(
         "username",
         option.None,
@@ -56,7 +69,11 @@ pub fn chat_decoder() -> decode.Decoder(Chat) {
     }
     "channel" -> {
       use id <- decode.field("id", decode.int)
-      use title <- decode.field("title", decode.optional(decode.string))
+      use title <- decode.optional_field(
+        "title",
+        option.None,
+        decode.optional(decode.string),
+      )
       use username <- decode.optional_field(
         "username",
         option.None,
