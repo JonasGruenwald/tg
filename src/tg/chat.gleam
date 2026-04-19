@@ -1,5 +1,7 @@
 import gleam/dynamic/decode
-import gleam/option.{type Option}
+import gleam/int
+import gleam/option.{type Option, None, Some}
+import gleam/string
 
 /// A chat
 /// https://core.telegram.org/bots/api#chat
@@ -82,5 +84,66 @@ pub fn chat_decoder() -> decode.Decoder(Chat) {
       decode.success(Channel(id:, title:, username:))
     }
     _ -> decode.failure(Group(0, option.None), "Chat")
+  }
+}
+
+/// Turn a chat into a human readable string for debugging
+pub fn describe(chat: Chat) {
+  case chat {
+    Private(id:, username:, first_name:, last_name:) ->
+      "Private Chat: "
+      <> case first_name {
+        Some(first_name) -> " " <> first_name
+        None -> ""
+      }
+      <> case last_name {
+        Some(last_name) -> " " <> last_name
+        None -> ""
+      }
+      <> {
+        case username {
+          Some(user) -> " @" <> user
+          None -> ""
+        }
+      }
+      <> " (Id: "
+      <> int.to_string(id)
+      <> ")"
+    Group(id:, title:) ->
+      "Group Chat: "
+      <> option.unwrap(title, "<Unnamed>")
+      <> " (Id: "
+      <> int.to_string(id)
+      <> ")"
+    Supergroup(id:, title:, username:, is_forum:) ->
+      "Supergroup: "
+      <> option.unwrap(title, "<Unnamed>")
+      <> {
+        case username {
+          Some(username) -> " @" <> username
+          None -> ""
+        }
+      }
+      <> {
+        case is_forum {
+          True -> " FORUM"
+          False -> ""
+        }
+      }
+      <> " (Id: "
+      <> int.to_string(id)
+      <> ")"
+    Channel(id:, title:, username:) ->
+      "Channel: "
+      <> option.unwrap(title, "<Unnamed>")
+      <> {
+        case username {
+          Some(username) -> " @" <> username
+          None -> ""
+        }
+      }
+      <> " (Id: "
+      <> int.to_string(id)
+      <> ")"
   }
 }

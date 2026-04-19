@@ -5,7 +5,7 @@ import gleam/httpc
 import gleam/int
 import gleam/io
 import gleam/list
-import pprint
+import gleam/string
 import tg
 import tg/method/get_updates
 import tg/method/set_message_reaction
@@ -32,7 +32,7 @@ fn poll(credentials: tg.Credentials, offset: Int) {
 
   // Print updates
   let assert Ok(updates) = get_updates.response(response)
-  io.println(pprint.format(updates))
+  io.println(list.map(updates, update.describe) |> string.join("\n"))
 
   // React with 👀 to each seen message
   list.each(updates, fn(update) {

@@ -2,175 +2,299 @@
   "ok": true,
   "result": [
     {
-      "update_id": 517724369,
+      "update_id": 650770231,
       "message": {
-        "message_id": 1,
+        "message_id": 10,
         "from": {
           "id": 968749252,
           "is_bot": false,
-          "first_name": "Jonas"
+          "first_name": "Jonas",
+          "username": "jonas_gru",
+          "language_code": "en"
         },
         "chat": {
-          "id": -4749096338,
-          "title": "Bot Test Group",
-          "type": "group",
-          "all_members_are_administrators": false,
-          "accepted_gift_types": {
-            "unlimited_gifts": false,
-            "limited_gifts": false,
-            "unique_gifts": false,
-            "premium_subscription": false,
-            "gifts_from_channels": false
-          }
+          "id": 968749252,
+          "first_name": "Jonas",
+          "username": "jonas_gru",
+          "type": "private"
         },
-        "date": 1773968493,
+        "date": 1776604930,
+        "photo": [
+          {
+            "file_id": "AgACAgIAAxkBAAMKaeTXAl8OU_zvUoaxVVzUyLcb_A0AAo4XaxtzAAEpSzWRIhFBNbbjAQADAgADcwADOwQ",
+            "file_unique_id": "AQADjhdrG3MAASlLeA",
+            "file_size": 1214,
+            "width": 69,
+            "height": 90
+          },
+          {
+            "file_id": "AgACAgIAAxkBAAMKaeTXAl8OU_zvUoaxVVzUyLcb_A0AAo4XaxtzAAEpSzWRIhFBNbbjAQADAgADbQADOwQ",
+            "file_unique_id": "AQADjhdrG3MAASlLcg",
+            "file_size": 10590,
+            "width": 247,
+            "height": 320
+          },
+          {
+            "file_id": "AgACAgIAAxkBAAMKaeTXAl8OU_zvUoaxVVzUyLcb_A0AAo4XaxtzAAEpSzWRIhFBNbbjAQADAgADeAADOwQ",
+            "file_unique_id": "AQADjhdrG3MAASlLfQ",
+            "file_size": 39845,
+            "width": 617,
+            "height": 800
+          },
+          {
+            "file_id": "AgACAgIAAxkBAAMKaeTXAl8OU_zvUoaxVVzUyLcb_A0AAo4XaxtzAAEpSzWRIhFBNbbjAQADAgADeQADOwQ",
+            "file_unique_id": "AQADjhdrG3MAASlLfg",
+            "file_size": 54668,
+            "width": 987,
+            "height": 1280
+          }
+        ],
+        "caption": "plug"
+      }
+    },
+    {
+      "update_id": 650770232,
+      "message": {
+        "message_id": 11,
+        "from": {
+          "id": 968749252,
+          "is_bot": false,
+          "first_name": "Jonas",
+          "username": "jonas_gru",
+          "language_code": "en"
+        },
+        "chat": {
+          "id": 968749252,
+          "first_name": "Jonas",
+          "username": "jonas_gru",
+          "type": "private"
+        },
+        "date": 1776604940,
+        "text": "Hello, this is a normal message"
+      }
+    },
+    {
+      "update_id": 650770233,
+      "message": {
+        "message_id": 23,
+        "from": {
+          "id": 968749252,
+          "is_bot": false,
+          "first_name": "Jonas",
+          "username": "jonas_gru",
+          "language_code": "en"
+        },
+        "chat": {
+          "id": -1003843389391,
+          "title": "Bot test group",
+          "type": "supergroup"
+        },
+        "date": 1776604997,
         "new_chat_participant": {
-          "id": 8747295349,
+          "id": 8797468873,
           "is_bot": true,
-          "first_name": "Watcher",
-          "username": "watcher_76_bot"
+          "first_name": "Test Bot",
+          "username": "jg_dev_bot"
         },
         "new_chat_member": {
-          "id": 8747295349,
+          "id": 8797468873,
           "is_bot": true,
-          "first_name": "Watcher",
-          "username": "watcher_76_bot"
+          "first_name": "Test Bot",
+          "username": "jg_dev_bot"
         },
         "new_chat_members": [
           {
-            "id": 8747295349,
+            "id": 8797468873,
             "is_bot": true,
-            "first_name": "Watcher",
-            "username": "watcher_76_bot"
+            "first_name": "Test Bot",
+            "username": "jg_dev_bot"
           }
         ]
       }
     },
     {
-      "update_id": 517724370,
+      "update_id": 650770234,
       "message": {
-        "message_id": 2,
+        "message_id": 24,
         "from": {
           "id": 968749252,
           "is_bot": false,
-          "first_name": "Jonas"
+          "first_name": "Jonas",
+          "username": "jonas_gru",
+          "language_code": "en"
         },
         "chat": {
-          "id": -4749096338,
-          "title": "Bot Test Group",
-          "type": "group",
-          "all_members_are_administrators": false,
-          "accepted_gift_types": {
-            "unlimited_gifts": false,
-            "limited_gifts": false,
-            "unique_gifts": false,
-            "premium_subscription": false,
-            "gifts_from_channels": false
-          }
+          "id": -1003843389391,
+          "title": "Bot test group",
+          "type": "supergroup"
         },
-        "date": 1773968514,
-        "text": "Hey @watcher_76_bot",
-        "entities": [
-          {
-            "offset": 4,
-            "length": 15,
-            "type": "mention"
-          }
-        ]
-      }
-    },
-    {
-      "update_id": 517724371,
-      "message": {
-        "message_id": 3,
-        "from": {
-          "id": 968749252,
-          "is_bot": false,
-          "first_name": "Jonas"
-        },
-        "chat": {
-          "id": -4749096338,
-          "title": "Bot Test Group",
-          "type": "group",
-          "all_members_are_administrators": false,
-          "accepted_gift_types": {
-            "unlimited_gifts": false,
-            "limited_gifts": false,
-            "unique_gifts": false,
-            "premium_subscription": false,
-            "gifts_from_channels": false
-          }
-        },
-        "date": 1773968547,
+        "date": 1776605052,
         "left_chat_participant": {
-          "id": 968749252,
-          "is_bot": false,
-          "first_name": "Jonas"
+          "id": 8797468873,
+          "is_bot": true,
+          "first_name": "Test Bot",
+          "username": "jg_dev_bot"
         },
         "left_chat_member": {
-          "id": 968749252,
-          "is_bot": false,
-          "first_name": "Jonas"
+          "id": 8797468873,
+          "is_bot": true,
+          "first_name": "Test Bot",
+          "username": "jg_dev_bot"
         }
       }
     },
     {
-      "update_id": 517724373,
+      "update_id": 650770235,
       "message": {
-        "message_id": 4,
+        "message_id": 25,
         "from": {
           "id": 968749252,
           "is_bot": false,
-          "first_name": "Jonas"
+          "first_name": "Jonas",
+          "username": "jonas_gru",
+          "language_code": "en"
         },
         "chat": {
-          "id": -5279077556,
+          "id": -1003843389391,
           "title": "Bot test group",
-          "type": "group",
-          "all_members_are_administrators": false,
-          "accepted_gift_types": {
-            "unlimited_gifts": false,
-            "limited_gifts": false,
-            "unique_gifts": false,
-            "premium_subscription": false,
-            "gifts_from_channels": false
-          }
+          "type": "supergroup"
         },
-        "date": 1773968575,
-        "group_chat_created": true
+        "date": 1776605058,
+        "new_chat_participant": {
+          "id": 8797468873,
+          "is_bot": true,
+          "first_name": "Test Bot",
+          "username": "jg_dev_bot"
+        },
+        "new_chat_member": {
+          "id": 8797468873,
+          "is_bot": true,
+          "first_name": "Test Bot",
+          "username": "jg_dev_bot"
+        },
+        "new_chat_members": [
+          {
+            "id": 8797468873,
+            "is_bot": true,
+            "first_name": "Test Bot",
+            "username": "jg_dev_bot"
+          }
+        ]
       }
     },
     {
-      "update_id": 517724374,
+      "update_id": 650770236,
       "message": {
-        "message_id": 5,
+        "message_id": 26,
         "from": {
           "id": 968749252,
           "is_bot": false,
-          "first_name": "Jonas"
+          "first_name": "Jonas",
+          "username": "jonas_gru",
+          "language_code": "en"
         },
         "chat": {
-          "id": -5279077556,
+          "id": -1003843389391,
           "title": "Bot test group",
-          "type": "group",
-          "all_members_are_administrators": false,
-          "accepted_gift_types": {
-            "unlimited_gifts": false,
-            "limited_gifts": false,
-            "unique_gifts": false,
-            "premium_subscription": false,
-            "gifts_from_channels": false
-          }
+          "type": "supergroup"
         },
-        "date": 1773968580,
-        "text": "hey @watcher_76_bot",
+        "date": 1776605070,
+        "text": "I'm writing a message in a group"
+      }
+    },
+    {
+      "update_id": 650770237,
+      "message": {
+        "message_id": 27,
+        "from": {
+          "id": 968749252,
+          "is_bot": false,
+          "first_name": "Jonas",
+          "username": "jonas_gru",
+          "language_code": "en"
+        },
+        "chat": {
+          "id": -1003843389391,
+          "title": "Bot test group",
+          "type": "supergroup"
+        },
+        "date": 1776605078,
+        "text": "@jg_dev_bot Hello bot, this message is for you1",
         "entities": [
           {
-            "offset": 4,
-            "length": 15,
+            "offset": 0,
+            "length": 11,
             "type": "mention"
           }
         ]
+      }
+    },
+    {
+      "update_id": 650770238,
+      "message": {
+        "message_id": 12,
+        "from": {
+          "id": 968749252,
+          "is_bot": false,
+          "first_name": "Jonas",
+          "username": "jonas_gru",
+          "language_code": "en"
+        },
+        "chat": {
+          "id": 968749252,
+          "first_name": "Jonas",
+          "username": "jonas_gru",
+          "type": "private"
+        },
+        "date": 1776605093,
+        "document": {
+          "file_name": "G2 Hyper Text.rtf",
+          "mime_type": "text/richtext",
+          "file_id": "BQACAgIAAxkBAAMMaeTXpW7aX5Dp6qLNd0USO-v3rk4AAgOjAAJzAAEpSy7onfx2OFUPOwQ",
+          "file_unique_id": "AgADA6MAAnMAASlL",
+          "file_size": 1260
+        }
+      }
+    },
+    {
+      "update_id": 650770239,
+      "message": {
+        "message_id": 13,
+        "from": {
+          "id": 968749252,
+          "is_bot": false,
+          "first_name": "Jonas",
+          "username": "jonas_gru",
+          "language_code": "en"
+        },
+        "chat": {
+          "id": 968749252,
+          "first_name": "Jonas",
+          "username": "jonas_gru",
+          "type": "private"
+        },
+        "date": 1776605106,
+        "document": {
+          "file_name": "IMG_9044.HEIC",
+          "mime_type": "image/heic",
+          "thumbnail": {
+            "file_id": "AAMCAgADGQEAAw1p5NexMkAQCirpT4gosHwqf_Q_egACBKMAAnMAASlL8HuQSLu0CXIBAAdtAAM7BA",
+            "file_unique_id": "AQADBKMAAnMAASlLcg",
+            "file_size": 8445,
+            "width": 240,
+            "height": 320
+          },
+          "thumb": {
+            "file_id": "AAMCAgADGQEAAw1p5NexMkAQCirpT4gosHwqf_Q_egACBKMAAnMAASlL8HuQSLu0CXIBAAdtAAM7BA",
+            "file_unique_id": "AQADBKMAAnMAASlLcg",
+            "file_size": 8445,
+            "width": 240,
+            "height": 320
+          },
+          "file_id": "BQACAgIAAxkBAAMNaeTXsTJAEAoq6U-IKLB8Kn_0P3oAAgSjAAJzAAEpS_B7kEi7tAlyOwQ",
+          "file_unique_id": "AgADBKMAAnMAASlL",
+          "file_size": 2543534
+        }
       }
     }
   ]

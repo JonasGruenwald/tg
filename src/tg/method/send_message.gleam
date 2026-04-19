@@ -160,8 +160,7 @@ fn element_tree_to_chunks(element: List(Element)) {
 /// 
 /// What we must consider:
 ///
-/// - Splitting some entities across messages is completely fine, bold and italic for example can just restart in the next message
-/// - Splitting other entities should be avoided at all cost, for example a username tag or URL will break when split
+/// - Ideally we want to split at a space, leaving intact message entities that shouldn't be cut up (like usernames, links)
 fn do_compose(
   remaining_graphemes: List(String),
   text_buffer: String,

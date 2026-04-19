@@ -1,5 +1,7 @@
 import gleam/dynamic
 import gleam/dynamic/decode
+import gleam/int
+import gleam/list
 import gleam/option.{type Option, None, Some}
 import tg/chat.{type Chat}
 import tg/user.{type User}
@@ -443,4 +445,111 @@ fn document_decoder() -> decode.Decoder(Document) {
     file_size:,
     mime_type:,
   ))
+}
+
+/// Turn an update item into a human readable string.
+/// This is intended for debugging and inspecting bot updates.
+pub fn describe(update: Update) {
+  case update {
+    IncomingMessage(update_id:, message:) ->
+      "Update "
+      <> int.to_string(update_id)
+      <> " - New Message - "
+      <> describe_message(message)
+    EditedMessage(update_id:, message:) ->
+      "Update "
+      <> int.to_string(update_id)
+      <> " - Edited Message - "
+      <> describe_message(message)
+    CallbackQuery(update_id:, id:, from:, data:) ->
+      "Update "
+      <> int.to_string(update_id)
+      <> " - Callback Query - Id: "
+      <> id
+      <> " from: "
+      <> user.describe(from)
+      <> " Data: "
+      <> data
+  }
+}
+
+fn describe_message(message: Message) {
+  case message {
+    TextMessage(message_id:, date:, from:, chat:, text:) ->
+      describe_message_header("Text", message_id, date, from, chat)
+      <> "Content: "
+      <> text
+    PhotoMessage(message_id:, date:, from:, chat:, caption:, photo:) ->
+      describe_message_header("Photo", message_id, date, from, chat)
+      <> "Caption: "
+      <> option.unwrap(caption, "No Caption")
+      <> " Sizes: "
+      <> int.to_string(list.length(photo))
+    DocumentMessage(message_id:, date:, from:, chat:, caption:, document:) ->
+      describe_message_header("Document", message_id, date, from, chat)
+      <> "Caption: "
+      <> option.unwrap(caption, "No Caption")
+      <> " Filename: "
+      <> option.unwrap(document.file_name, "No Filename")
+      <> " File type: "
+      <> option.unwrap(document.mime_type, "Unknown")
+    VideoMessage(message_id:, date:, from:, chat:, caption:, video:) ->
+      describe_message_header("Video", message_id, date, from, chat)
+      <> "Caption: "
+      <> option.unwrap(caption, "No Caption")
+      <> " Duration: "
+      <> int.to_string(video.duration)
+      <> "s"
+    AudioMessage(message_id:, date:, from:, chat:, caption:, audio:) ->
+      describe_message_header("Audio", message_id, date, from, chat)
+      <> "Caption: "
+      <> option.unwrap(caption, "No Caption")
+      <> " Duration: "
+      <> int.to_string(audio.duration)
+      <> "s"
+    VideoNoteMessage(message_id:, date:, from:, chat:, video_note:) ->
+      describe_message_header("Video Note", message_id, date, from, chat)
+      <> "Duration: "
+      <> int.to_string(video_note.duration)
+      <> "s"
+    VoiceMessage(message_id:, date:, from:, chat:, caption:, voice:) ->
+      describe_message_header("Voice", message_id, date, from, chat)
+      <> "Caption: "
+      <> option.unwrap(caption, "No Caption")
+      <> " Duration: "
+      <> int.to_string(voice.duration)
+      <> "s"
+    StickerMessage(
+      message_id:,
+      date:,
+      from:,
+      chat:,
+      file_id:,
+      file_unique_id: _,
+    ) ->
+      describe_message_header("Sticker", message_id, date, from, chat)
+      <> "File Id: "
+      <> file_id
+    UnsupportedMessage(message_id:, date:, from:, chat:, payload: _) ->
+      describe_message_header("Unsupported", message_id, date, from, chat)
+  }
+}
+
+fn describe_message_header(
+  message_type: String,
+  message_id: Int,
+  date: Int,
+  from: User,
+  chat: Chat,
+) {
+  message_type
+  <> "(Id: "
+  <> int.to_string(message_id)
+  <> ") from user: "
+  <> user.describe(from)
+  <> " at timestamp: "
+  <> int.to_string(date)
+  <> "\nChat: "
+  <> chat.describe(chat)
+  <> "\n"
 }

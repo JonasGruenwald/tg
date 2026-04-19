@@ -1,10 +1,12 @@
 import birdie
 import gleam/bit_array
 import gleam/http/response
+import gleam/list
+import gleam/string
 import gleeunit
-import pprint
 import simplifile
 import tg/method/get_updates
+import tg/update
 
 pub fn main() -> Nil {
   gleeunit.main()
@@ -18,5 +20,8 @@ pub fn get_updates_response_test() {
     |> response.map(bit_array.from_string)
 
   let assert Ok(updates) = get_updates.response(response)
-  birdie.snap(pprint.format(updates), "Parsed Updates")
+  let pretty_updates =
+    list.map(updates, update.describe)
+    |> string.join("\n----------------------------------------------\n")
+  birdie.snap(pretty_updates, "Parsed Updates")
 }
