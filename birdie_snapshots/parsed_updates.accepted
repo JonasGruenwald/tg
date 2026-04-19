@@ -51,3 +51,59 @@ From user: Jonas @jonas_gru (Id: 968749252) at timestamp: 1776605106
 Chat: Private Chat:  Jonas @jonas_gru (Id: 968749252)
 Caption: No Caption
 Filename: IMG_9044.HEIC File type: image/heic
+----------------------------------------------------------------------
+Update 650770240 - New Message - Text (Id: 14)
+From user: Jonas @jonas_gru (Id: 968749252) at timestamp: 1776611907
+Chat: Private Chat:  Jonas @jonas_gru (Id: 968749252)
+Content: Another text message
+----------------------------------------------------------------------
+Update 650770241 - Edited Message - Text (Id: 14)
+From user: Jonas @jonas_gru (Id: 968749252) at timestamp: 1776611907
+Chat: Private Chat:  Jonas @jonas_gru (Id: 968749252)
+Content: Another text message
+I've edited the text message to add this part!
+----------------------------------------------------------------------
+Update 650770242 - New Message - Voice (Id: 15)
+From user: Jonas @jonas_gru (Id: 968749252) at timestamp: 1776611992
+Chat: Private Chat:  Jonas @jonas_gru (Id: 968749252)
+Caption: No Caption
+Duration: 2s
+----------------------------------------------------------------------
+Update 650770243 - New Message - Video Note (Id: 16)
+From user: Jonas @jonas_gru (Id: 968749252) at timestamp: 1776611998
+Chat: Private Chat:  Jonas @jonas_gru (Id: 968749252)
+Duration: 2s
+----------------------------------------------------------------------
+Update 650770244 - New Message - Sticker (Id: 17)
+From user: Jonas @jonas_gru (Id: 968749252) at timestamp: 1776612003
+Chat: Private Chat:  Jonas @jonas_gru (Id: 968749252)
+File Id: CAACAgIAAxkBAAMRaeTyo4bnGmly2UUlT7PC-MY8esAAArIfAAIu3tFLMv2q1ttHHo47BA
+----------------------------------------------------------------------
+Update 650770245 - New Message - Document (Id: 18)
+From user: Jonas @jonas_gru (Id: 968749252) at timestamp: 1776612010
+Chat: Private Chat:  Jonas @jonas_gru (Id: 968749252)
+Caption: No Caption
+Filename: still.8.jpg File type: image/jpeg
+----------------------------------------------------------------------
+Update 650770246 - New Message - Video (Id: 19)
+From user: Jonas @jonas_gru (Id: 968749252) at timestamp: 1776612107
+Chat: Private Chat:  Jonas @jonas_gru (Id: 968749252)
+Caption: No Caption
+Duration: 4s
+----------------------------------------------------------------------
+Update 650770247 - New Message - Video (Id: 20)
+From user: Jonas @jonas_gru (Id: 968749252) at timestamp: 1776612138
+Chat: Private Chat:  Jonas @jonas_gru (Id: 968749252)
+Caption: its a video
+Duration: 4s
+----------------------------------------------------------------------
+Update 650770248 - New Message - Text (Id: 28)
+From user: Jonas @jonas_gru (Id: 968749252) at timestamp: 1776612149
+Chat: Supergroup: Bot test group (Id: -1003843389391)
+Content: i am writing
+----------------------------------------------------------------------
+Update 650770249 - New Message - Audio (Id: 21)
+From user: Jonas @jonas_gru (Id: 968749252) at timestamp: 1776612273
+Chat: Private Chat:  Jonas @jonas_gru (Id: 968749252)
+Caption: No Caption
+Duration: 2s

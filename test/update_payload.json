@@ -296,6 +296,341 @@
           "file_size": 2543534
         }
       }
+    },
+    {
+      "update_id": 650770240,
+      "message": {
+        "message_id": 14,
+        "from": {
+          "id": 968749252,
+          "is_bot": false,
+          "first_name": "Jonas",
+          "username": "jonas_gru",
+          "language_code": "en"
+        },
+        "chat": {
+          "id": 968749252,
+          "first_name": "Jonas",
+          "username": "jonas_gru",
+          "type": "private"
+        },
+        "date": 1776611907,
+        "text": "Another text message"
+      }
+    },
+    {
+      "update_id": 650770241,
+      "edited_message": {
+        "message_id": 14,
+        "from": {
+          "id": 968749252,
+          "is_bot": false,
+          "first_name": "Jonas",
+          "username": "jonas_gru",
+          "language_code": "en"
+        },
+        "chat": {
+          "id": 968749252,
+          "first_name": "Jonas",
+          "username": "jonas_gru",
+          "type": "private"
+        },
+        "date": 1776611907,
+        "edit_date": 1776611923,
+        "text": "Another text message\nI've edited the text message to add this part!"
+      }
+    },
+    {
+      "update_id": 650770242,
+      "message": {
+        "message_id": 15,
+        "from": {
+          "id": 968749252,
+          "is_bot": false,
+          "first_name": "Jonas",
+          "username": "jonas_gru",
+          "language_code": "en"
+        },
+        "chat": {
+          "id": 968749252,
+          "first_name": "Jonas",
+          "username": "jonas_gru",
+          "type": "private"
+        },
+        "date": 1776611992,
+        "voice": {
+          "duration": 2,
+          "mime_type": "audio/ogg",
+          "file_id": "AwACAgIAAxkBAAMPaeTymB-F9aS0lwnheVD0Ye8SxcAAAqykAAJzAAEpS7Ds0zj1xH6NOwQ",
+          "file_unique_id": "AgADrKQAAnMAASlL",
+          "file_size": 9934
+        }
+      }
+    },
+    {
+      "update_id": 650770243,
+      "message": {
+        "message_id": 16,
+        "from": {
+          "id": 968749252,
+          "is_bot": false,
+          "first_name": "Jonas",
+          "username": "jonas_gru",
+          "language_code": "en"
+        },
+        "chat": {
+          "id": 968749252,
+          "first_name": "Jonas",
+          "username": "jonas_gru",
+          "type": "private"
+        },
+        "date": 1776611998,
+        "video_note": {
+          "duration": 2,
+          "length": 400,
+          "thumbnail": {
+            "file_id": "AAMCAgADGQEAAxBp5PKeWAnlk9y7M8uWtMeIWoYMEQACrqQAAnMAASlLEM6UC0rEoEYBAAdtAAM7BA",
+            "file_unique_id": "AQADrqQAAnMAASlLcg",
+            "file_size": 17356,
+            "width": 320,
+            "height": 320
+          },
+          "thumb": {
+            "file_id": "AAMCAgADGQEAAxBp5PKeWAnlk9y7M8uWtMeIWoYMEQACrqQAAnMAASlLEM6UC0rEoEYBAAdtAAM7BA",
+            "file_unique_id": "AQADrqQAAnMAASlLcg",
+            "file_size": 17356,
+            "width": 320,
+            "height": 320
+          },
+          "file_id": "DQACAgIAAxkBAAMQaeTynlgJ5ZPcuzPLlrTHiFqGDBEAAq6kAAJzAAEpSxDOlAtKxKBGOwQ",
+          "file_unique_id": "AgADrqQAAnMAASlL",
+          "file_size": 222158
+        }
+      }
+    },
+    {
+      "update_id": 650770244,
+      "message": {
+        "message_id": 17,
+        "from": {
+          "id": 968749252,
+          "is_bot": false,
+          "first_name": "Jonas",
+          "username": "jonas_gru",
+          "language_code": "en"
+        },
+        "chat": {
+          "id": 968749252,
+          "first_name": "Jonas",
+          "username": "jonas_gru",
+          "type": "private"
+        },
+        "date": 1776612003,
+        "sticker": {
+          "width": 475,
+          "height": 512,
+          "emoji": "🍊",
+          "set_name": "erinaceuseuropaeus",
+          "is_animated": false,
+          "is_video": false,
+          "type": "regular",
+          "thumbnail": {
+            "file_id": "AAMCAgADGQEAAxFp5PKjhucaaXLZRSVPs8L4xjx6wAACsh8AAi7e0Usy_arW20cejgEAB20AAzsE",
+            "file_unique_id": "AQADsh8AAi7e0Uty",
+            "file_size": 16692,
+            "width": 297,
+            "height": 320
+          },
+          "thumb": {
+            "file_id": "AAMCAgADGQEAAxFp5PKjhucaaXLZRSVPs8L4xjx6wAACsh8AAi7e0Usy_arW20cejgEAB20AAzsE",
+            "file_unique_id": "AQADsh8AAi7e0Uty",
+            "file_size": 16692,
+            "width": 297,
+            "height": 320
+          },
+          "file_id": "CAACAgIAAxkBAAMRaeTyo4bnGmly2UUlT7PC-MY8esAAArIfAAIu3tFLMv2q1ttHHo47BA",
+          "file_unique_id": "AgADsh8AAi7e0Us",
+          "file_size": 32866
+        }
+      }
+    },
+    {
+      "update_id": 650770245,
+      "message": {
+        "message_id": 18,
+        "from": {
+          "id": 968749252,
+          "is_bot": false,
+          "first_name": "Jonas",
+          "username": "jonas_gru",
+          "language_code": "en"
+        },
+        "chat": {
+          "id": 968749252,
+          "first_name": "Jonas",
+          "username": "jonas_gru",
+          "type": "private"
+        },
+        "date": 1776612010,
+        "document": {
+          "file_name": "still.8.jpg",
+          "mime_type": "image/jpeg",
+          "thumbnail": {
+            "file_id": "AAMCAgADGQEAAxJp5PKqWAtxdqqsotxJcRAMbdiAFAACTKUAAmTdAAFLE8lJrhqgoK4BAAdtAAM7BA",
+            "file_unique_id": "AQADTKUAAmTdAAFLcg",
+            "file_size": 9972,
+            "width": 320,
+            "height": 256
+          },
+          "thumb": {
+            "file_id": "AAMCAgADGQEAAxJp5PKqWAtxdqqsotxJcRAMbdiAFAACTKUAAmTdAAFLE8lJrhqgoK4BAAdtAAM7BA",
+            "file_unique_id": "AQADTKUAAmTdAAFLcg",
+            "file_size": 9972,
+            "width": 320,
+            "height": 256
+          },
+          "file_id": "BQACAgIAAxkBAAMSaeTyqlgLcXaqrKLcSXEQDG3YgBQAAkylAAJk3QABSxPJSa4aoKCuOwQ",
+          "file_unique_id": "AgADTKUAAmTdAAFL",
+          "file_size": 751032
+        }
+      }
+    },
+    {
+      "update_id": 650770246,
+      "message": {
+        "message_id": 19,
+        "from": {
+          "id": 968749252,
+          "is_bot": false,
+          "first_name": "Jonas",
+          "username": "jonas_gru",
+          "language_code": "en"
+        },
+        "chat": {
+          "id": 968749252,
+          "first_name": "Jonas",
+          "username": "jonas_gru",
+          "type": "private"
+        },
+        "date": 1776612107,
+        "video": {
+          "duration": 4,
+          "width": 720,
+          "height": 1280,
+          "file_name": "IMG_9214.MOV",
+          "mime_type": "video/mp4",
+          "thumbnail": {
+            "file_id": "AAMCAgADGQEAAxNp5PMKiLG3JfnWdSWqUJgrf1Fc6wACs6QAAnMAASlLzP0wOZQMTwIBAAdtAAM7BA",
+            "file_unique_id": "AQADs6QAAnMAASlLcg",
+            "file_size": 18437,
+            "width": 180,
+            "height": 320
+          },
+          "thumb": {
+            "file_id": "AAMCAgADGQEAAxNp5PMKiLG3JfnWdSWqUJgrf1Fc6wACs6QAAnMAASlLzP0wOZQMTwIBAAdtAAM7BA",
+            "file_unique_id": "AQADs6QAAnMAASlLcg",
+            "file_size": 18437,
+            "width": 180,
+            "height": 320
+          },
+          "file_id": "BAACAgIAAxkBAAMTaeTzCoixtyX51nUlqlCYK39RXOsAArOkAAJzAAEpS8z9MDmUDE8COwQ",
+          "file_unique_id": "AgADs6QAAnMAASlL",
+          "file_size": 1466935
+        }
+      }
+    },
+    {
+      "update_id": 650770247,
+      "message": {
+        "message_id": 20,
+        "from": {
+          "id": 968749252,
+          "is_bot": false,
+          "first_name": "Jonas",
+          "username": "jonas_gru",
+          "language_code": "en"
+        },
+        "chat": {
+          "id": 968749252,
+          "first_name": "Jonas",
+          "username": "jonas_gru",
+          "type": "private"
+        },
+        "date": 1776612138,
+        "video": {
+          "duration": 4,
+          "width": 720,
+          "height": 1280,
+          "file_name": "IMG_9214.MOV",
+          "mime_type": "video/mp4",
+          "thumbnail": {
+            "file_id": "AAMCAgADGQEAAxNp5PMKiLG3JfnWdSWqUJgrf1Fc6wACs6QAAnMAASlLzP0wOZQMTwIBAAdtAAM7BA",
+            "file_unique_id": "AQADs6QAAnMAASlLcg",
+            "file_size": 18437,
+            "width": 180,
+            "height": 320
+          },
+          "thumb": {
+            "file_id": "AAMCAgADGQEAAxNp5PMKiLG3JfnWdSWqUJgrf1Fc6wACs6QAAnMAASlLzP0wOZQMTwIBAAdtAAM7BA",
+            "file_unique_id": "AQADs6QAAnMAASlLcg",
+            "file_size": 18437,
+            "width": 180,
+            "height": 320
+          },
+          "file_id": "BAACAgIAAxkBAAMTaeTzCoixtyX51nUlqlCYK39RXOsAArOkAAJzAAEpS8z9MDmUDE8COwQ",
+          "file_unique_id": "AgADs6QAAnMAASlL",
+          "file_size": 1466935
+        },
+        "caption": "its a video"
+      }
+    },
+    {
+      "update_id": 650770248,
+      "message": {
+        "message_id": 28,
+        "from": {
+          "id": 968749252,
+          "is_bot": false,
+          "first_name": "Jonas",
+          "username": "jonas_gru",
+          "language_code": "en"
+        },
+        "chat": {
+          "id": -1003843389391,
+          "title": "Bot test group",
+          "type": "supergroup"
+        },
+        "date": 1776612149,
+        "text": "i am writing"
+      }
+    },
+    {
+      "update_id": 650770249,
+      "message": {
+        "message_id": 21,
+        "from": {
+          "id": 968749252,
+          "is_bot": false,
+          "first_name": "Jonas",
+          "username": "jonas_gru",
+          "language_code": "en"
+        },
+        "chat": {
+          "id": 968749252,
+          "first_name": "Jonas",
+          "username": "jonas_gru",
+          "type": "private"
+        },
+        "date": 1776612273,
+        "audio": {
+          "duration": 2,
+          "file_name": "Oblfing 44 3.m4a",
+          "mime_type": "audio/mpeg",
+          "file_id": "CQACAgIAAxkBAAMVaeTzsfu6edZ0FP40bFszTrcPLA8AArukAAJzAAEpS1KOOL9072QROwQ",
+          "file_unique_id": "AgADu6QAAnMAASlL",
+          "file_size": 23580
+        }
+      }
     }
   ]
 }

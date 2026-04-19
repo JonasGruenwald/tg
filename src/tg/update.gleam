@@ -2,7 +2,7 @@ import gleam/dynamic
 import gleam/dynamic/decode
 import gleam/int
 import gleam/list
-import gleam/option.{type Option, None, Some}
+import gleam/option.{type Option}
 import gleam/string
 import tg/chat.{type Chat}
 import tg/user.{type User}
@@ -411,7 +411,7 @@ pub type Audio {
     file_unique_id: String,
     duration: Int,
     file_name: Option(String),
-    file_size: Option(String),
+    file_size: Option(Int),
     mime_type: Option(String),
   )
 }
@@ -421,7 +421,7 @@ fn audio_decoder() -> decode.Decoder(Audio) {
   use file_unique_id <- decode.field("file_unique_id", decode.string)
   use duration <- decode.field("duration", decode.int)
   use file_name <- decode.field("file_name", decode.optional(decode.string))
-  use file_size <- decode.field("file_size", decode.optional(decode.string))
+  use file_size <- decode.field("file_size", decode.optional(decode.int))
   use mime_type <- decode.field("mime_type", decode.optional(decode.string))
   decode.success(Audio(
     file_id:,
