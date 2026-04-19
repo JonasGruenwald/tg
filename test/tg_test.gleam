@@ -22,6 +22,6 @@ pub fn get_updates_response_test() {
   let assert Ok(updates) = get_updates.response(response)
   let pretty_updates =
     list.map(updates, update.describe)
-    |> string.join("\n----------------------------------------------\n")
+    |> string.join("\n----------------------------------------------------------------------\n")
   birdie.snap(pretty_updates, "Parsed Updates")
 }

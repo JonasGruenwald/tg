@@ -3,6 +3,7 @@ import gleam/dynamic/decode
 import gleam/int
 import gleam/list
 import gleam/option.{type Option, None, Some}
+import gleam/string
 import tg/chat.{type Chat}
 import tg/user.{type User}
 
@@ -100,6 +101,20 @@ pub type Message {
     file_id: String,
     file_unique_id: String,
   )
+  ChatMembersJoined(
+    message_id: Int,
+    date: Int,
+    from: User,
+    chat: Chat,
+    members: List(User),
+  )
+  ChatMemberLeft(
+    message_id: Int,
+    date: Int,
+    from: User,
+    chat: Chat,
+    member: User,
+  )
   /// The telegram API has further message types that may occur in a chat,
   /// which this library currently does not support.
   /// This fallback type is provided so that the update decoder does not fail on 
@@ -127,6 +142,8 @@ fn message_decoder() -> decode.Decoder(Message) {
     video_note_message_decoder(message_id, date, from, chat),
     voice_message_decoder(message_id, date, from, chat),
     sticker_message_decoder(message_id, date, from, chat),
+    new_chat_members_decoder(message_id, date, from, chat),
+    chat_member_left_decoder(message_id, date, from, chat),
     fallback_message_decoder(message_id, date, from, chat),
   ])
 }
@@ -280,6 +297,29 @@ fn sticker_message_decoder(
     file_id:,
     file_unique_id:,
   ))
+}
+
+fn new_chat_members_decoder(
+  message_id: Int,
+  date: Int,
+  from: User,
+  chat: Chat,
+) -> decode.Decoder(Message) {
+  use members <- decode.field(
+    "new_chat_members",
+    decode.list(user.user_decoder()),
+  )
+  decode.success(ChatMembersJoined(message_id:, date:, from:, chat:, members:))
+}
+
+fn chat_member_left_decoder(
+  message_id: Int,
+  date: Int,
+  from: User,
+  chat: Chat,
+) -> decode.Decoder(Message) {
+  use member <- decode.field("left_chat_member", user.user_decoder())
+  decode.success(ChatMemberLeft(message_id:, date:, from:, chat:, member:))
 }
 
 fn fallback_message_decoder(message_id: Int, date: Int, from: User, chat: Chat) {
@@ -533,6 +573,20 @@ fn describe_message(message: Message) {
     UnsupportedMessage(message_id:, date:, from:, chat:, payload: _) ->
       describe_message_header("Unsupported", message_id, date, from, chat)
       <> "TODO: Implement this message type"
+    ChatMembersJoined(message_id:, date:, from:, chat:, members:) ->
+      describe_message_header(
+        "Chat Members Joined",
+        message_id,
+        date,
+        from,
+        chat,
+      )
+      <> "Members: "
+      <> list.map(members, user.describe) |> string.join(", ")
+    ChatMemberLeft(message_id:, date:, from:, chat:, member:) ->
+      describe_message_header("Chat Member Left", message_id, date, from, chat)
+      <> "Member: "
+      <> user.describe(member)
   }
 }
 
