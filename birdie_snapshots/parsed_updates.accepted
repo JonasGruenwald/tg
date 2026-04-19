@@ -4,38 +4,50 @@ title: Parsed Updates
 file: ./test/tg_test.gleam
 test_name: get_updates_response_test
 ---
-Update 650770231 - New Message - Photo(Id: 10) from user: Jonas @jonas_gru (Id: 968749252) at timestamp: 1776604930
+Update 650770231 - New Message - Photo (Id: 10)
+From user: Jonas @jonas_gru (Id: 968749252) at timestamp: 1776604930
 Chat: Private Chat:  Jonas @jonas_gru (Id: 968749252)
-Caption: plug Sizes: 4
+Caption: plug
+Sizes: 4
 ----------------------------------------------
-Update 650770232 - New Message - Text(Id: 11) from user: Jonas @jonas_gru (Id: 968749252) at timestamp: 1776604940
+Update 650770232 - New Message - Text (Id: 11)
+From user: Jonas @jonas_gru (Id: 968749252) at timestamp: 1776604940
 Chat: Private Chat:  Jonas @jonas_gru (Id: 968749252)
 Content: Hello, this is a normal message
 ----------------------------------------------
-Update 650770233 - New Message - Unsupported(Id: 23) from user: Jonas @jonas_gru (Id: 968749252) at timestamp: 1776604997
+Update 650770233 - New Message - Unsupported (Id: 23)
+From user: Jonas @jonas_gru (Id: 968749252) at timestamp: 1776604997
 Chat: Supergroup: Bot test group (Id: -1003843389391)
-
+TODO: Implement this message type
 ----------------------------------------------
-Update 650770234 - New Message - Unsupported(Id: 24) from user: Jonas @jonas_gru (Id: 968749252) at timestamp: 1776605052
+Update 650770234 - New Message - Unsupported (Id: 24)
+From user: Jonas @jonas_gru (Id: 968749252) at timestamp: 1776605052
 Chat: Supergroup: Bot test group (Id: -1003843389391)
-
+TODO: Implement this message type
 ----------------------------------------------
-Update 650770235 - New Message - Unsupported(Id: 25) from user: Jonas @jonas_gru (Id: 968749252) at timestamp: 1776605058
+Update 650770235 - New Message - Unsupported (Id: 25)
+From user: Jonas @jonas_gru (Id: 968749252) at timestamp: 1776605058
 Chat: Supergroup: Bot test group (Id: -1003843389391)
-
+TODO: Implement this message type
 ----------------------------------------------
-Update 650770236 - New Message - Text(Id: 26) from user: Jonas @jonas_gru (Id: 968749252) at timestamp: 1776605070
+Update 650770236 - New Message - Text (Id: 26)
+From user: Jonas @jonas_gru (Id: 968749252) at timestamp: 1776605070
 Chat: Supergroup: Bot test group (Id: -1003843389391)
 Content: I'm writing a message in a group
 ----------------------------------------------
-Update 650770237 - New Message - Text(Id: 27) from user: Jonas @jonas_gru (Id: 968749252) at timestamp: 1776605078
+Update 650770237 - New Message - Text (Id: 27)
+From user: Jonas @jonas_gru (Id: 968749252) at timestamp: 1776605078
 Chat: Supergroup: Bot test group (Id: -1003843389391)
 Content: @jg_dev_bot Hello bot, this message is for you1
 ----------------------------------------------
-Update 650770238 - New Message - Unsupported(Id: 12) from user: Jonas @jonas_gru (Id: 968749252) at timestamp: 1776605093
+Update 650770238 - New Message - Document (Id: 12)
+From user: Jonas @jonas_gru (Id: 968749252) at timestamp: 1776605093
 Chat: Private Chat:  Jonas @jonas_gru (Id: 968749252)
-
+Caption: No Caption
+Filename: G2 Hyper Text.rtf File type: text/richtext
 ----------------------------------------------
-Update 650770239 - New Message - Unsupported(Id: 13) from user: Jonas @jonas_gru (Id: 968749252) at timestamp: 1776605106
+Update 650770239 - New Message - Document (Id: 13)
+From user: Jonas @jonas_gru (Id: 968749252) at timestamp: 1776605106
 Chat: Private Chat:  Jonas @jonas_gru (Id: 968749252)
-
+Caption: No Caption
+Filename: IMG_9044.HEIC File type: image/heic

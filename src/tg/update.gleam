@@ -427,7 +427,7 @@ pub type Document {
     file_id: String,
     file_unique_id: String,
     file_name: Option(String),
-    file_size: Option(String),
+    file_size: Option(Int),
     mime_type: Option(String),
   )
 }
@@ -436,7 +436,7 @@ fn document_decoder() -> decode.Decoder(Document) {
   use file_id <- decode.field("file_id", decode.string)
   use file_unique_id <- decode.field("file_unique_id", decode.string)
   use file_name <- decode.field("file_name", decode.optional(decode.string))
-  use file_size <- decode.field("file_size", decode.optional(decode.string))
+  use file_size <- decode.field("file_size", decode.optional(decode.int))
   use mime_type <- decode.field("mime_type", decode.optional(decode.string))
   decode.success(Document(
     file_id:,
@@ -483,13 +483,13 @@ fn describe_message(message: Message) {
       describe_message_header("Photo", message_id, date, from, chat)
       <> "Caption: "
       <> option.unwrap(caption, "No Caption")
-      <> " Sizes: "
+      <> "\nSizes: "
       <> int.to_string(list.length(photo))
     DocumentMessage(message_id:, date:, from:, chat:, caption:, document:) ->
       describe_message_header("Document", message_id, date, from, chat)
       <> "Caption: "
       <> option.unwrap(caption, "No Caption")
-      <> " Filename: "
+      <> "\nFilename: "
       <> option.unwrap(document.file_name, "No Filename")
       <> " File type: "
       <> option.unwrap(document.mime_type, "Unknown")
@@ -497,14 +497,14 @@ fn describe_message(message: Message) {
       describe_message_header("Video", message_id, date, from, chat)
       <> "Caption: "
       <> option.unwrap(caption, "No Caption")
-      <> " Duration: "
+      <> "\nDuration: "
       <> int.to_string(video.duration)
       <> "s"
     AudioMessage(message_id:, date:, from:, chat:, caption:, audio:) ->
       describe_message_header("Audio", message_id, date, from, chat)
       <> "Caption: "
       <> option.unwrap(caption, "No Caption")
-      <> " Duration: "
+      <> "\nDuration: "
       <> int.to_string(audio.duration)
       <> "s"
     VideoNoteMessage(message_id:, date:, from:, chat:, video_note:) ->
@@ -516,7 +516,7 @@ fn describe_message(message: Message) {
       describe_message_header("Voice", message_id, date, from, chat)
       <> "Caption: "
       <> option.unwrap(caption, "No Caption")
-      <> " Duration: "
+      <> "\nDuration: "
       <> int.to_string(voice.duration)
       <> "s"
     StickerMessage(
@@ -532,6 +532,7 @@ fn describe_message(message: Message) {
       <> file_id
     UnsupportedMessage(message_id:, date:, from:, chat:, payload: _) ->
       describe_message_header("Unsupported", message_id, date, from, chat)
+      <> "TODO: Implement this message type"
   }
 }
 
@@ -543,9 +544,9 @@ fn describe_message_header(
   chat: Chat,
 ) {
   message_type
-  <> "(Id: "
+  <> " (Id: "
   <> int.to_string(message_id)
-  <> ") from user: "
+  <> ")\nFrom user: "
   <> user.describe(from)
   <> " at timestamp: "
   <> int.to_string(date)
